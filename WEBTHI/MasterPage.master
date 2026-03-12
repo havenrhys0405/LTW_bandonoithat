@@ -1,0 +1,87 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Quản Trị Hệ Thống</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        body{ margin:0; font-family:Arial; background:#f4f6f9; }
+        
+        /*header*/
+        .header{ background: #1f3a5f; color: white; padding: 15px 20px; font-size:20px; font-weight:bold; }
+        .header h2 { margin: 0; font-size: 20px; }
+
+        .user-info { font-size: 14px; }
+        .user-info a { color: #fff; margin-left: 10px; text-decoration: underline; }
+        
+        /*layout*/
+        .container{ display: flex; min-height: calc(100vh - 100px); }
+        
+        /*sidebar*/
+        .sidebar{ width: 220px; background: #2c3e50; color:white; padding-top:20px; }
+        .sidebar a{ display:block; padding: 12px 20px; color: white; text-decoration:none; border-bottom: 1px solid #34495e; }
+        .sidebar a:hover{ background:#1abc9c; }
+   
+        /*content*/
+        .content{ flex: 1; padding:20px; background: white; }
+        
+        /*footer*/
+        .footer{ background: #1f3a5f; color:white; text-align:center; padding: 10px; font-size:14px; }
+
+        .user-panel { text-align: center; padding: 20px 10px; border-top: 1px solid #34495e; margin-top: 20px; }
+        .user-avatar { width: 64px; height: 64px; border-radius: 50%; border: 2px solid #fff; margin-bottom: 10px; }
+        .user-name { display: block; font-weight: bold; font-size: 15px; }
+        .user-role { display: block; font-size: 13px; color: #bdc3c7; margin-bottom: 8px; }
+        .btn-logout { color: #fff; font-size: 13px; text-decoration: underline; }
+
+        /*css cho đồng bộ hóa giao diện thanh điều hướng(breadcrumb) */
+        .breadcrumb a { text-decoration: none !important; color: #333 !important; font-weight: 600; }
+        .breadcrumb a:hover { color: #1f3a5f !important; text-decoration: underline !important; }
+    </style>
+  
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+              
+        <div class="header">
+            <h2>QUẢN TRỊ HỆ THỐNG NỘI THẤT VT</h2>
+        </div>
+
+        <div class="container">
+            <div class="sidebar">
+                <a href="TrangHeThong.aspx">Home</a>
+
+                <asp:PlaceHolder ID="phAdminOnly" runat="server">
+                    <a href="QUANLYDANHMUC.aspx">DANH MỤC</a>
+                    <a href="QUANLYLOAISANPHAM.aspx">LOẠI SẢN PHẨM</a>
+                    <a href="QUANLYNHANVIEN.aspx">NHÂN VIÊN</a>
+                    <a href="QUANLYKHACHHANG.aspx">KHÁCH HÀNG</a>
+                </asp:PlaceHolder>
+            
+                <a href="QUANLYSANPHAM.aspx">SẢN PHẨM</a>
+                <a href="QUANLYDONHANG.aspx">ĐƠN HÀNG</a>
+          
+                <div class="user-panel">
+                    <img src="anhuser/user.png" class="user-avatar" />
+                    <asp:Label ID="lblTenDN" runat="server" CssClass="user-name" />
+                    <asp:Label ID="lblRole" runat="server" CssClass="user-role" />
+                    <asp:LinkButton ID="btnDangXuat" runat="server" CssClass="btn-logout" OnClick="btnDangXuat_Click">
+                        Đăng xuất
+                    </asp:LinkButton>
+                </div>
+            </div>
+
+            <div class="content">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"/>
+            </div>
+        </div>
+
+        <div class="footer">
+            @ 2025- BẢN QUYỀN THUỘC VỀ LÊ THỊ VÂN VÀ VŨ THANH THẢO
+        </div>
+    </form>
+</body>
+</html>
